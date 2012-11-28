@@ -13,7 +13,7 @@ TARGET=BGstep
 CC=g++
 RM=rm
 OPT=
-INC=include/
+INC=
 LIB=-lgmp -lgmpxx
 
 #------------------------------------------------------
