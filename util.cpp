@@ -1,5 +1,8 @@
 #include "util.h"
 
+#include "gmp.h"
+#include "gmpxx.h"
+
 int gcd(int a,int b){
   int r;
   while(b>0){
@@ -41,10 +44,11 @@ void xeuclid(const int a,const int b,int *u,int *v){
 
 // Inverse in mod m.
 // If we get -1, there doesn't exist inverse in F_m.
-int inv_mod(int a,int m){
-  int x=0,y=m;
-  int u=1,v,g=a;
-  int s,t,q;
+long long inv_mod(long long a,long long m){
+  long long x=0,y=m;
+  long long u=1,v,g=a;
+  long long s,t,q;
+  if(a == 1) return 1;
   while(y!=0){
     t=g%y;
     q=(g-t)/y;

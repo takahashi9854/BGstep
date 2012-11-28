@@ -6,28 +6,29 @@
 
 class Point{
 public:
-  mpq_class x;
-  mpq_class y;
-  mpq_class z;
+  long long x;
+  long long y;
+  long long z;
 
-  static mpq_class a,b,c;
+  static long long a,b,c;
 
   Point();
-  Point(mpq_class X,mpq_class Y,mpq_class Z);
-  Point(std::string X,std::string Y,std::string Z);
+  Point(long long X,long long Y,long long Z);
+  // Point(std::string X,std::string Y,std::string Z);
   // Some utility functions.
-  void init();
-  void set(mpq_class x,mpq_class y,mpq_class z);
+  // void init();
+  // void set(long long x,long long y,long long z);
   
-  void ECadd(Point P,Point Q);
+  void ECadd(Point P,Point Q,long long m);
+  // void ECadd2(Point P,Point Q,mpq_class m);
 
   static void check(Point P,Point Q);
   
   Point reflect();  
 
   // operator overload
-  Point operator+(const Point& obj);
-  Point operator-(const Point& obj);
+  // Point operator+(const Point& obj);
+  // Point operator-(const Point& obj);
   // I don't know hot to define this operator.
   // Does any good idea exist?
   // Point operator=(const Point& obj);
