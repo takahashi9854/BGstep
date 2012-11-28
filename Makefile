@@ -32,7 +32,7 @@ LIB=-lgmp -lgmpxx
 # Source Files
 #---
 
-SRC=$(shell ls src/*.cpp)
+SRC=$(shell ls *.cpp)
 HED=$(shell ls include/*.h)
 OBJ=$(SRC:.cpp=.o)
 

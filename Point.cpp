@@ -2,16 +2,20 @@
 #include "Point.h"
 #endif
 
+#ifndef UTIL_H
+#include "util.h"
+#endif
+
 #include "gmp.h"
 #include "gmpxx.h"
 #include <iostream>
 #include <string>
 
 extern const int CONST = 13;
-
-mpq_class Point::a = 0;
-mpq_class Point::b = -CONST * CONST;
-mpq_class Point::c = 0;
+// y^2 = x^3 + ax^2 + bx + c
+extern mpq_class Point::a;
+extern mpq_class Point::b;
+extern mpq_class Point::c;
 
 
 // Default Constructor.
@@ -75,7 +79,7 @@ void Point::ECadd(Point P,Point Q){
     x.canonicalize();
     y.canonicalize();
     return;
-  }else if(P.x == Q.x && P.y == Q.y){
+  }else if(P.x == Q.x && P.y == Q.y && P.z != 0){
     l = (3*P.x*P.x + 2*a*P.x + b)/(2*P.y);
     v = Q.y - l*Q.x;
     x = l*l - a - 2*P.x;
@@ -109,9 +113,9 @@ Point Point::operator+(const Point& obj){
     ans.y.canonicalize();
     return ans;
   }else if(x == obj.x && y == obj.y){
-    l = (3*x*x + 2*a*x +b)/(2*y);
-    v = obj.y - l*obj.x;
-    ans.x  = l*l - a - 2*obj.x;
+    l = (3*obj.x*obj.x + 2*a*obj.x +b)/(2*obj.y);
+    v = y - l*obj.x;
+    ans.x  = l*l - a - 2*x;
     ans.y = -1*(l*ans.x + v);
     ans.z = "1";
     ans.x.canonicalize();
