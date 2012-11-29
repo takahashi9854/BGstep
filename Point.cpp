@@ -19,7 +19,7 @@ extern long long Point::c;
 
 
 // Default Constructor.
-Point::Point(): x(0),y(0),z(1) {
+Point::Point(): x(0),y(1),z(0) {
 }
 
 // Constructor using initialize variables which you want.
@@ -101,30 +101,28 @@ void Point::ECadd(Point P,Point Q,long long m){
 }
 
 
-void Point::ECpower(Point P,long long n,long long m){
-  Point Q=P;
+void Point::ECpower(long long n,long long m){
+
+  std::cout << "in ECpower" << std::endl; 
+  
+  Point Q = Point(x,y,z);
+  Q.show();
   Point result;
   Point T;
   long long tmp=n;
-
-  std::cout << "in ECpower" << std::endl; 
 
   while(tmp>0){
     if(tmp%2 == 0){
       result.ECadd(result,Q,m);
     }
-    T = Q;
-    Q.ECadd(T,T,m);
+    Q.ECadd(Q,Q,m);
     tmp/=2;
-    Q.show();
   }
   x=result.x;
   y=result.y;
   z=result.z;
-
-  return;  
+  return;
 }
-
 
 
 // operator overload on +.
@@ -233,10 +231,10 @@ void Point::ECpower(Point P,long long n,long long m){
 //   return ans;
 // }
 
-// Point Point::operator=(const Point& obj){
-//   Point tmp(obj.x,obj.y,obj.z);
-//   return tmp;
-// }
+Point Point::operator=(const Point& obj){
+  Point tmp(obj.x,obj.y,obj.z);
+  return tmp;
+}
 
 // Point Point::operator-=(Point obj){
 //   Point tmp(obj.x,-1*obj.y,obj.z);

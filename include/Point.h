@@ -22,7 +22,7 @@ public:
   void ECadd(Point P,Point Q,long long m);
   // void ECadd2(Point P,Point Q,mpq_class m);
 
-  void ECpower(Point P,long long n,long long m);
+  void ECpower(long long n,long long m);
   
   static void check(Point P,Point Q);
   
@@ -33,7 +33,7 @@ public:
   // Point operator-(const Point& obj);
   // I don't know hot to define this operator.
   // Does any good idea exist?
-  // Point operator=(const Point& obj);
+  Point operator=(const Point& obj);
   // Point operator-=(Point obj);
     
   void copy(Point P);

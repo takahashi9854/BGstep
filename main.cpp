@@ -22,7 +22,7 @@ int main(int argc, char *argvp[]){
   S.show();
 
   P = Point(3,1,1);
-  R.ECpower(P,3,7);
+  R.ECpower(2,7);
   R.show();
 
   return 0;
