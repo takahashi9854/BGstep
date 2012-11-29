@@ -107,13 +107,14 @@ void Point::ECpower(long long n,long long m){
   
   Point Q = Point(x,y,z);
   Q.show();
-  Point result;
+  Point result = Point();
   Point T;
   long long tmp=n;
 
   while(tmp>0){
-    if(tmp%2 == 0){
-      result.ECadd(result,Q,m);
+    if(tmp%2 == 1){
+      puts("ok");  // checking where the code in progress.
+      result.ECadd(result,Q,m); // changed here.
     }
     Q.ECadd(Q,Q,m);
     tmp/=2;
