@@ -21,5 +21,9 @@ int main(int argc, char *argvp[]){
   R.show();
   S.show();
 
+  P = Point(3,1,1);
+  R.ECpower(P,3,7);
+  R.show();
+
   return 0;
 }

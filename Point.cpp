@@ -72,8 +72,6 @@ void Point::ECadd(Point P,Point Q,long long m){
   
   if(P.x != Q.x && P.y != Q.y){
     l = (P.y - Q.y)*inv_mod(P.x - Q.x,m)%m;
-    std::cout << inv_mod(P.x - Q.x,m) << std::endl;
-    std::cout << l << std::endl;
     v = (Q.y - l * Q.x)%m;
     x = (l*l - a - P.x - Q.x)%m;
     y = -1*(l * x + v)%m;
@@ -85,8 +83,6 @@ void Point::ECadd(Point P,Point Q,long long m){
     return;
   }else if(P.x == Q.x && P.y == Q.y && P.z != 0){
     l = (3*P.x*P.x + 2*a*P.x + b)*inv_mod(2*P.y,m)%m;
-    std::cout << inv_mod(P.x - Q.x,m) << std::endl;
-    std::cout << l << std::endl;
     v = (Q.y - l*Q.x)%m;
     x = (l*l - a - 2*P.x)%m;
     y = -1*(l*x + v)%m;
@@ -103,6 +99,33 @@ void Point::ECadd(Point P,Point Q,long long m){
   }
     
 }
+
+
+void Point::ECpower(Point P,long long n,long long m){
+  Point Q=P;
+  Point result;
+  Point T;
+  long long tmp=n;
+
+  std::cout << "in ECpower" << std::endl; 
+
+  while(tmp>0){
+    if(tmp%2 == 0){
+      result.ECadd(result,Q,m);
+    }
+    T = Q;
+    Q.ECadd(T,T,m);
+    tmp/=2;
+    Q.show();
+  }
+  x=result.x;
+  y=result.y;
+  z=result.z;
+
+  return;  
+}
+
+
 
 // operator overload on +.
 // Point Point::operator+(const Point& obj){

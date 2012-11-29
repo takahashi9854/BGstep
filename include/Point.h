@@ -22,6 +22,8 @@ public:
   void ECadd(Point P,Point Q,long long m);
   // void ECadd2(Point P,Point Q,mpq_class m);
 
+  void ECpower(Point P,long long n,long long m);
+  
   static void check(Point P,Point Q);
   
   Point reflect();  
