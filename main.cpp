@@ -19,6 +19,7 @@ int main(int argc, char *argvp[]){
     P.ECpower(i,7);
     std::cout << "i = " << i << std::endl;
     P.show();
+    P.copy(Q);
   }
   return 0;
 }
