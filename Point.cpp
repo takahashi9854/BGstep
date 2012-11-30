@@ -69,7 +69,17 @@ Point Point::reflect(){
 void Point::ECadd(Point P,Point Q,long long m){
   long long l;
   long long v;
-  
+
+  // for a unit element.
+  if(P.z == 0){
+    x=Q.x;y=Q.y;z=Q.z;
+    return;
+  }
+  if(Q.z == 0){
+    x=P.x;y=P.y;z=P.z;
+    return;
+  }
+      
   if(P.x != Q.x && P.y != Q.y){
     l = (P.y - Q.y)*inv_mod(P.x - Q.x,m)%m;
     v = (Q.y - l * Q.x)%m;
@@ -81,7 +91,7 @@ void Point::ECadd(Point P,Point Q,long long m){
     // x.canonicalize();
     // y.canonicalize();
     return;
-  }else if(P.x == Q.x && P.y == Q.y && P.z != 0){
+  }else if(P.x == Q.x && P.y == Q.y){
     l = (3*P.x*P.x + 2*a*P.x + b)*inv_mod(2*P.y,m)%m;
     v = (Q.y - l*Q.x)%m;
     x = (l*l - a - 2*P.x)%m;
@@ -93,32 +103,37 @@ void Point::ECadd(Point P,Point Q,long long m){
     z=1;
     return;
   }else{
-    x=z=1;
-    y=0;
+    x=z=0;
+    y=1;
     return;
   }
     
 }
 
-
+// nP mod m.
 void Point::ECpower(long long n,long long m){
-
-  std::cout << "in ECpower" << std::endl; 
+  // puts("\nIn ECpower in Point.cpp\n");
+  // std::cout << "in ECpower" << std::endl; 
   
   Point Q = Point(x,y,z);
-  Q.show();
+  // Q.show();
   Point result = Point();
+  // result.show();
   Point T;
   long long tmp=n;
 
   while(tmp>0){
+    // std::cout << "tmp = " << tmp << std::endl;
     if(tmp%2 == 1){
-      puts("ok");  // checking where the code in progress.
+      // puts("ok");  // checking where the code in progress.
       result.ECadd(result,Q,m); // changed here.
+      
     }
     Q.ECadd(Q,Q,m);
     tmp/=2;
   }
+  // puts("result of ECpower is here.");
+  // result.show();
   x=result.x;
   y=result.y;
   z=result.z;

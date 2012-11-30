@@ -2,6 +2,7 @@
 #include "gmpxx.h"
 #include "Point.h"
 #include "util.h"
+#include <iostream>
 
 int main(int argc, char *argvp[]){
 
@@ -14,16 +15,10 @@ int main(int argc, char *argvp[]){
   Point Q(3,1,1);
   Point R;
   Point S;
-  R.ECadd(P,Q,7);
-  S.ECadd(R,Q,7);
-
-  
-  R.show();
-  S.show();
-
-  P = Point(3,1,1);
-  P.ECpower(3,7);
-  R.show();
-
+  for(int i=1;i<=9;i++){
+    P.ECpower(i,7);
+    std::cout << "i = " << i << std::endl;
+    P.show();
+  }
   return 0;
 }
