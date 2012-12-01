@@ -167,8 +167,8 @@ void Point::ECpower(long long n,long long m){
 //     ans.y.canonicalize();
 //     return ans;
 //   }else{
-//     ans.x = ans.z = "1";
-//     ans.y = "0";
+//     ans.x = ans.z = "0";
+//     ans.y = "1";
 //     return ans;
 //   }
 // }
