@@ -16,13 +16,13 @@ public:
   Point(long long X,long long Y,long long Z);
   // Point(std::string X,std::string Y,std::string Z);
   // Some utility functions.
-  // void init();
+  void init();
   // void set(long long x,long long y,long long z);
   
   void ECadd(Point P,Point Q,long long m);
   // void ECadd2(Point P,Point Q,mpq_class m);
 
-  void ECpower(long long n,long long m);
+  Point ECpower(long long n,long long m);
   
   static void check(Point P,Point Q);
   
