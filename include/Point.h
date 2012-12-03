@@ -34,6 +34,7 @@ public:
   // I don't know hot to define this operator.
   // Does any good idea exist?
   Point operator=(const Point& obj);
+  int operator==(const Point& obj);
   // Point operator-=(Point obj);
     
   void copy(Point P);

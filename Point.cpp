@@ -128,7 +128,10 @@ Point Point::operator=(const Point& obj){
   return *this;
 }
 
-
+int Point::operator==(const Point& obj){
+  if(this->x == obj.x && this->y == obj.y && this->z == obj.z) return 1;
+  else -1;
+}
     
 
 

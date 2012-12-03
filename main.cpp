@@ -13,20 +13,28 @@ int main(int argc, char *argvp[]){
   Point::b=0;
   Point::c=2;
 
+  int i,j,k;
+  
   long long q = 7; // F_q
   long long m = sqrt(sqrt(q));
-  Point store[m+1];
-  
+  Point *store = new Point[m+1]; // default constructor.
+
   Point P(3,1,1);
-  Point Q(3,1,1);
-  Point R;
-  Point S;
-
-  R = P.ECpower(q+1,q);
-
-  for(int i=0;i<=m;i++) store[i] = P.ECpower(i,q);
-
+  Point R(3,2,1);
+  Point rP;
+  Point Q = P.ECpower(q+1,q);
+  Point result,tmp,rtmp;
+  for(i=0;i<=m;i++) store[i] = P.ECpower(i,q);
+  k = m;
+  while(k>=0){
+    tmp.ECadd(Q,P.ECpower(k*2*m,q));
+    rmpt = tmp.reflect();
+    if(tmp == store[m]) break;
+    if(rmpt == store[m]) break;
+  }
+      
+    
   
-  
+  delete [] store;
   return 0;
 }
