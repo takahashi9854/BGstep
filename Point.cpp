@@ -39,8 +39,9 @@ void Point::copy(Point P){
 
 // Showing coordinates of Point instance.
 void Point::show(){
-  std::cout << "x=" << x << "\n" << "y=" << y << "\n" << "z=" << z <<"\n";
-  std::cout << "here is the end of showing coordinates of point.\n" << std::endl;
+  std::cout << "(" << this->x << "," << this->y <<  "," << this->z << ")" << std::endl;
+  // std::cout << "x=" << x << "\n" << "y=" << y << "\n" << "z=" << z <<"\n";
+  // std::cout << "here is the end of showing coordinates of point.\n" << std::endl;
   return;
 }
 
@@ -65,16 +66,16 @@ void Point::ECadd(Point P,Point Q,long long m){
 
   // for a unit element.
   if(P.z == 0){
-    x=Q.x;y=Q.y;z=Q.z;
+    this->x=Q.x;this->y=Q.y;this->z=Q.z;
     return;
   }
   if(Q.z == 0){
-    x=P.x;y=P.y;z=P.z;
+    this->x=P.x;this->y=P.y;this->z=P.z;
     return;
   }
       
   if(P.x != Q.x && P.y != Q.y){
-    l = (P.y - Q.y)*inv_mod(P.x - Q.x,m)%m;
+    l = ((P.y - Q.y)%m)*(inv_mod(P.x - Q.x,m)%m)%m;
     v = (Q.y - l * Q.x)%m;
     x = (l*l - a - P.x - Q.x)%m;
     y = -1*(l * x + v)%m;
@@ -96,22 +97,17 @@ void Point::ECadd(Point P,Point Q,long long m){
     y=1;
     return;
   }
-    
 }
 
 // nP mod m.
 Point Point::ECpower(long long n,long long m){
-  Point Q = Point(x,y,z);
-  Point result = Point();
+  Point Q = Point(x,y,z); // Q = (this->x,this->y,this->z)
+  Point result = Point(); // result = (0,1,0)
   Point T;
   long long tmp=n;
-
-  if(n==1) return result;
-
+  
   while(tmp>0){
-    if(tmp%2 == 1){
-      result.ECadd(result,Q,m);
-    }
+    if(tmp%2 == 1)result.ECadd(result,Q,m);
     Q.ECadd(Q,Q,m);
     tmp/=2;
   }
