@@ -48,7 +48,7 @@ long long inv_mod(long long a,long long m){
   long long x=0,y=m;
   long long u=1,v,g=a;
   long long s,t,q;
-  if(a == 1) return 1;
+  if(a == 1) exit(-1);
   while(y!=0){
     t=g%y;
     q=(g-t)/y;

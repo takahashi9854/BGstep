@@ -75,39 +75,48 @@ void Point::ECadd(Point P,Point Q,long long m){
   }
       
   if(P.x != Q.x && P.y != Q.y){
-    l = ((P.y - Q.y)%m)*(inv_mod(P.x - Q.x,m)%m)%m;
+    // a slope
+    l = ((P.y - Q.y) * inv_mod(P.x - Q.x,m))%m;
+    // an intercept
     v = (Q.y - l * Q.x)%m;
-    x = (l*l - a - P.x - Q.x)%m;
-    y = -1*(l * x + v)%m;
-    while(x<0) x+=m;
-    while(y<0) y+=m;
-    z=1;
+    this->x = (l*l - a - P.x - Q.x)%m;
+    this->y = -1*(l * this->x + v)%m;
+
+    while(this->x < 0) this->x += m;
+    while(this->y < 0) this->y += m;
+    this->z = 1;
     return;
   }else if(P.x == Q.x && P.y == Q.y){
-    l = (3*P.x*P.x + 2*a*P.x + b)*inv_mod(2*P.y,m)%m;
+    // a slope
+    l = (P.x*P.x%m*3 + 2*a*P.x%m + b)%m * inv_mod(2*P.y,m)%m;
+    // an intercept
     v = (Q.y - l*Q.x)%m;
-    x = (l*l - a - 2*P.x)%m;
-    y = -1*(l*x + v)%m;
-    while(x<0) x+=m;
-    while(y<0) y+=m;
-    z=1;
+    this->x = (l*l - a - 2*P.x)%m;
+    this->y = -1*(l*this->x + v)%m;
+
+    while(this->x<0) this->x += m;
+    while(this->y<0) this->y += m;
+    this->z = 1;
     return;
   }else{
-    x=z=0;
-    y=1;
+    this->x = this->z = 0;
+    this->y = 1;
     return;
   }
 }
 
 // nP mod m.
 Point Point::ECpower(long long n,long long m){
-  Point Q = Point(x,y,z); // Q = (this->x,this->y,this->z)
+  Point Q = Point(this->x,this->y,this->z); // Q = (this->x,this->y,this->z)
   Point result = Point(); // result = (0,1,0)
   Point T;
   long long tmp=n;
+
+  std::cout << "start from this point" << std::endl;
+  Q.show();
   
   while(tmp>0){
-    if(tmp%2 == 1)result.ECadd(result,Q,m);
+    if(tmp%2 == 1) result.ECadd(result,Q,m);
     Q.ECadd(Q,Q,m);
     tmp/=2;
   }

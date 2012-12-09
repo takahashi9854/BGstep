@@ -11,25 +11,40 @@ int main(int argc, char *argvp[]){
   // y^2 = x^3 + ax^2 + bx + c
   // y^2 = x^3 - 10x + 21 over F_557
   Point::a=0;
-  Point::b=0;
-  Point::c=2;
+  Point::b=10;
+  Point::c=-21;
 
   int i,j,k;
 
   long long M;
-  long long q = 7; // F_q
+  long long q = 557; // F_q
   long long m = floor(sqrt(sqrt(q))) + 1; // calculate the forth root of q.
   std::cout << "m = "  << m << std::endl;
 
 
   // here is the step 1.
-  Point P(3,6,1); // want to find the order of this point.
+  Point P(2,3,1); // want to find the order of this point.
+  std::cout << "q+1 = " << q+1 << std::endl;
   Point Q = P.ECpower(q+1,q); // calculate Q = (q+1)P.
+  Point R;
   std::cout << "Q" << std::endl;
   Q.show();
+  Q = Point();
+  Q.show();
+  for(i=1;i<=1;i++){
+    R.ECadd(P,P,q);
+    std::cout << "i = " << i << std::endl;
+    R.show();
+    Q = R;
+  }
 
+  Q = Point(58,164,1);
+  R.ECadd(P,Q,q);
+  R.show();
+  
   // here is the step 2.
   Point *store = new Point[m+1]; // default constructor.
+  /*
   for(i=0;i<=m;i++){
     store[i] = P.ECpower(i,q); // store jP for j=0,1,2,...,m.
     // std::cout << "i = " << i << std::endl;
@@ -89,7 +104,7 @@ int main(int argc, char *argvp[]){
   
     
 
-    
+  */
   delete [] store; // destoroy array.
   return 0;
 }
