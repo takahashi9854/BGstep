@@ -44,10 +44,14 @@ void xeuclid(const int a,const int b,int *u,int *v){
 
 // Inverse in mod m.
 // If we get -1, there doesn't exist inverse in F_m.
-long long inv_mod(long long a,long long m){
-  long long x=0,y=m;
-  long long u=1,v,g=a;
-  long long s,t,q;
+//long long inv_mod(long long a,long long m){
+mpz_class inv_mod(mpz_class a,mpz_class m){
+  // long long x=0,y=m;
+  // long long u=1,v,g=a;
+  // long long s,t,q;
+  mpz_class x=0,y=m;
+  mpz_class u=1,g=a,v;
+  mpz_class s,t,q;
   if(a == 1) exit(-1);
   while(y!=0){
     t=g%y;

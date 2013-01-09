@@ -16,9 +16,12 @@ int main(int argc, char *argvp[]){
 
   int i,j,k;
 
-  long long M;
-  long long q = 557; // F_q
-  long long m = floor(sqrt(sqrt(q))) + 1; // calculate the forth root of q.
+  // long long M;
+  mpz_class M;
+  // long long q = 557; // F_q
+  mpz_class q = 557;
+  // long long m = floor(sqrt(sqrt(q))) + 1; // calculate the forth root of q.
+  mpz_class m = sqrt(sqrt(q)) + 1;
   std::cout << "m = "  << m << std::endl;
 
 
@@ -43,7 +46,8 @@ int main(int argc, char *argvp[]){
   R.show();
   
   // here is the step 2.
-  Point *store = new Point[m+1]; // default constructor.
+  long long size = m;
+  Point *store = new Point[size+1]; // default constructor.
   /*
   for(i=0;i<=m;i++){
     store[i] = P.ECpower(i,q); // store jP for j=0,1,2,...,m.

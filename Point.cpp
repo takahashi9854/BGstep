@@ -13,9 +13,12 @@
 
 extern const long long CONST = 13;
 // y^2 = x^3 + ax^2 + bx + c
-extern long long Point::a;
-extern long long Point::b;
-extern long long Point::c;
+// extern long long Point::a;
+// extern long long Point::b;
+// extern long long Point::c;
+extern mpz_class Point::a;
+extern mpz_class Point::b;
+extern mpz_class Point::c;
 
 
 // Default Constructor.
@@ -23,16 +26,18 @@ Point::Point(): x(0),y(1),z(0) {
 }
 
 // Constructor using initialize variables which you want.
-Point::Point(long long X,long long Y,long long Z): x(X),y(Y),z(Z){
+// Point::Point(long long X,long long Y,long long Z): x(X),y(Y),z(Z){
+// }
+Point::Point(mpz_class X, mpz_class Y, mpz_class Z): x(X),y(Y),z(Z){
 }
 
 // Point::Point(std::string X,std::string Y,std::string Z): x(X),y(Y),z(Z){
 // }
 
 void Point::copy(Point P){
-  x = P.x;
-  y = P.y;
-  z = P.z;
+  this->x = P.x;
+  this->y = P.y;
+  this->z = P.z;
 
   return;
 }
@@ -60,9 +65,12 @@ Point Point::reflect(){
 
 // Additional two points.
 // obj.canonicalize() is the function which reduction to this obj.
-void Point::ECadd(Point P,Point Q,long long m){
-  long long l;
-  long long v;
+// void Point::ECadd(Point P,Point Q,long long m){
+void Point::ECadd(Point P,Point Q, mpz_class m)}{
+  // long long l;
+  // long long v;
+  mpz_class l;
+  mpz_class v;
 
   // for a unit element.
   if(P.z == 0){
@@ -106,11 +114,13 @@ void Point::ECadd(Point P,Point Q,long long m){
 }
 
 // nP mod m.
-Point Point::ECpower(long long n,long long m){
+// Point Point::ECpower(long long n,long long m){
+Point Point::ECpower(mpz_class n,mpz_class m){
   Point Q = Point(this->x,this->y,this->z); // Q = (this->x,this->y,this->z)
   Point result = Point(); // result = (0,1,0)
   Point T;
-  long long tmp=n;
+  // long long tmp=n;
+  mpz_class tmp=n;
 
   std::cout << "start from this point" << std::endl;
   Q.show();

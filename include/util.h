@@ -13,4 +13,5 @@ void xeuclid(const int a,const int b,int *u,int *v,int *g);
 void xeuclid(const int a,const int b,int *u,int *v);
 // Calculate the inverse in F_m.
 // If we get -1, there doesn't exist inverse in F_m.
-long long inv_mod(long long a,long long m);
+//long long inv_mod(long long a,long long m);
+mpz_class inv_mod(mpz_class a,mpz_class m);
