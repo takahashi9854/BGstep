@@ -46,8 +46,9 @@ int main(int argc, char *argvp[]){
   R.show();
   
   // here is the step 2.
-  long long size = m;
+  unsigned long size = mpz_class::get_ui(m);
   Point *store = new Point[size+1]; // default constructor.
+
   /*
   for(i=0;i<=m;i++){
     store[i] = P.ECpower(i,q); // store jP for j=0,1,2,...,m.

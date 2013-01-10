@@ -66,7 +66,7 @@ Point Point::reflect(){
 // Additional two points.
 // obj.canonicalize() is the function which reduction to this obj.
 // void Point::ECadd(Point P,Point Q,long long m){
-void Point::ECadd(Point P,Point Q, mpz_class m)}{
+void Point::ECadd(Point P,Point Q, mpz_class m){
   // long long l;
   // long long v;
   mpz_class l;
